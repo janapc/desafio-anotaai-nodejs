@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  mongodb:
+    image: mongo:7.0.2
+    restart: on-failure
+    container_name: mongodb_catalog
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: catalog
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_db:/data/db/
+  localstack:
+    container_name: localstack_catalog
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,sqs,sns,lambda,logs
+      - DEFAULT_REGION=us-east-1
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "localstack_vl:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+volumes:
+  mongo_db: {}
+  localstack_vl: {}

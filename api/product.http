@@ -1,0 +1,30 @@
+POST http://localhost:3000/api/product
+content-type: application/json
+
+{
+    "title": "product  2",
+    "description": "product 1",
+    "ownerId": "123123",
+  "price": 10.90,
+  "category": "65c14feff4cf172cd14abdf2"
+}
+
+###
+
+PUT http://localhost:3000/api/product/65c15041f4cf172cd14abdfa
+content-type: application/json
+
+{
+  "price": 11.99
+}
+
+###
+
+DELETE  http://localhost:3000/api/product/123123/65c14d851d06087e2352263b
+content-type: application/json
+
+###
+
+
+GET http://localhost:3000/api/product/123123
+content-type: application/json

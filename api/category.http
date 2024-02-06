@@ -1,0 +1,28 @@
+POST http://localhost:3000/api/category
+content-type: application/json
+
+{
+    "title": "category 5",
+    "description": "category test",
+    "ownerId": "123123"
+}
+
+###
+
+PUT http://localhost:3000/api/category/65c155eb0496ab523c38cb2e
+content-type: application/json
+
+{
+    "description": "test3"
+}
+
+###
+
+DELETE  http://localhost:3000/api/category/123123/65c14b191d06087e23522632
+content-type: application/json
+
+###
+
+
+GET http://localhost:3000/api/category/123123
+content-type: application/json
