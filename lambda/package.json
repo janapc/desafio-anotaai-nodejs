@@ -4,7 +4,8 @@
   "description": "function to consume SQS messages",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cache --forceExit --detectOpenHandles",
+    "test": "jest",
+    "linter": "eslint .",
     "prebuild": "rm -rf dist",
     "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
     "posbuild":"cd dist && zip -r function.zip index.js"

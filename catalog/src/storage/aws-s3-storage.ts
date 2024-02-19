@@ -28,7 +28,7 @@ export class AwsS3Storage implements IStorage {
     const response = await this.client.send(command)
     const bodyString = await response.Body?.transformToString('utf-8')
     if (bodyString) {
-      const data: Catalog = JSON.parse(bodyString as string)
+      const data: Catalog = JSON.parse(bodyString)
       return data
     }
     throw new Error(`I didn't find this ${fileName} file on S3`)

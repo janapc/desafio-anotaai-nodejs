@@ -4,7 +4,8 @@
   "description": "api the catalog",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cache --forceExit --detectOpenHandles",
+    "test": "jest",
+    "linter": "eslint src",
     "local": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts"
   },
   "keywords": [],

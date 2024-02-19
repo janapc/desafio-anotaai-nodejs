@@ -8,9 +8,10 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "ignorePatterns": ["jest.config.js"],
   "overrides": [
     {
-      "files": ["tests/**/*"],
+      "files": ["**/*.test.ts"],
       "env": {
         "jest": true
       }
