@@ -1,20 +1,6 @@
 import { MongoDbProductRepository } from './product'
-import { type Category, type Product } from '../../../entities/entities'
+import { type Category } from '../../../entities/entities'
 import { productModel } from '../schemas/product'
-
-const mockData = (product: Product): any => ({
-  id: product.id,
-  title: product.title,
-  description: product.description,
-  ownerId: product.ownerId,
-  price: product.price,
-  category: {
-    id: product.category.id,
-    title: product.category.title,
-    description: product.category.description,
-    ownerId: product.category.ownerId,
-  },
-})
 
 const mockCategory: Category = {
   id: 'test',
@@ -38,11 +24,7 @@ describe('Product Repository', () => {
     }
     const spyFindById = jest
       .spyOn(productModel, 'findById')
-      .mockImplementation((): any => {
-        return {
-          populate: jest.fn().mockResolvedValue(mockData(product)),
-        }
-      })
+      .mockResolvedValue({ ...product, category: mockCategory.id })
     const repository = new MongoDbProductRepository(productModel)
     const result = await repository.findById(product.id)
     expect(result).not.toBeNull()
@@ -52,11 +34,7 @@ describe('Product Repository', () => {
   it('Should return null if a product not found', async () => {
     const spyFindById = jest
       .spyOn(productModel, 'findById')
-      .mockImplementation((): any => {
-        return {
-          populate: jest.fn().mockResolvedValue(null),
-        }
-      })
+      .mockResolvedValue(null)
     const repository = new MongoDbProductRepository(productModel)
     const result = await repository.findById('asd')
     expect(result).toBeNull()
