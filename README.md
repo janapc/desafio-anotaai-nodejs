@@ -3,7 +3,7 @@
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/janapc/desafio-anotaai-nodejs"/>
   <img alt="Language top" src="https://img.shields.io/github/languages/top/janapc/desafio-anotaai-nodejs"/>
   <img alt="Repo size" src="https://img.shields.io/github/repo-size/janapc/desafio-anotaai-nodejs"/>
-
+  <img alt="workflow" src="https://github.com/janapc/desafio-anotaai-nodejs/actions/workflows/node.js.yml/badge.svg">
 <a href="#description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 <a href="#requirement">Requirement</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 <a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
