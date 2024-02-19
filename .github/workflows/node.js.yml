@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   linter:
@@ -15,7 +15,7 @@ jobs:
     name: Code analysis
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [20.x]
     steps:
       - uses: actions/checkout@v3
       - name: Verify code
@@ -23,8 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+        working-directory: ./catalog
       - run: npm run linter
         working-directory: ./catalog
+      - run: npm ci
+        working-directory: ./lambda
       - run: npm run linter
         working-directory: ./lambda
 
@@ -32,17 +35,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [20.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Tests unit
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run test
-      working-directory: ./catalog
-    - run: npm run test
-      working-directory: ./lambda
-
+      - uses: actions/checkout@v3
+      - name: Tests unit
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+        working-directory: ./catalog
+      - run: npm run test
+        working-directory: ./catalog
+      - run: npm ci
+        working-directory: ./lambda
+      - run: npm run test
+        working-directory: ./lambda
